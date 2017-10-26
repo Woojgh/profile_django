@@ -37,7 +37,7 @@ AGE_CHOICES = [
 ]
 
 
-class ImagerProfile(models.Model):
+class UserProfile(models.Model):
     """Users model when joining"""
     user = models.OneToOneField(
         User,
@@ -77,7 +77,7 @@ class ImagerProfile(models.Model):
 @receiver(post_save, sender=User)
 def make_profile_for_new_user(sender, **kwargs):
     if kwargs['created']:
-        new_profile = ImagerProfile(
+        new_profile = UserProfile(
             user=kwargs['instance'],
         )
         new_profile.save()
