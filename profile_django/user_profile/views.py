@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import views as auth_views
 from user_images.models import Photo, Album
 from django.http import HttpResponseRedirect
-from imager_profile.forms import ImageUploadForm, AlbumUploadForm, EditImageForm, EditAlbumForm
+from user_profile.forms import ImageUploadForm, AlbumUploadForm, EditImageForm, EditAlbumForm
 from django.core.urlresolvers import reverse_lazy
 from django.views import View
 from django.views.generic import UpdateView, ListView
@@ -14,13 +14,13 @@ from taggit.models import Tag
 class home_view(View):
     """Home view callable, for the home page."""
     def get(self, request):
-        return render(request, 'django_imager/home.html')
+        return render(request, 'profile_django/home.html')
 
 
 class profile_view(View):
     """Profile view callable, for the profile page"""
     def get(self, request):
-        return render(request, 'django_imager/profile.html')
+        return render(request, 'profile_django/profile.html')
 
 
 class logout_view(View):
