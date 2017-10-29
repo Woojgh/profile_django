@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'profile_django',
+    'user_profile'
 ]
 
 MIDDLEWARE = [
@@ -76,12 +78,13 @@ WSGI_APPLICATION = 'profile_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'profile',
-        'USER': 'woojgh',
-        'HOST': '127.0.0.1',
+        'NAME': os.environ.get('DATABASE_NAME', ''),
+        'USER': os.environ.get('DATABASE_USER', ''),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
+        'HOST': os.environ.get('DATABASE_HOST', ''),
         'PORT': '5432',
         'TEST': {
-            'NAME': 'anything'
+            'NAME': 'test_db'
         }
     }
 }
@@ -124,3 +127,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    '/var/www/static/',
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+LOGIN_REDIRECT_URL = '/library'
+LOGOUT_REDIRECT_URL = '/'
